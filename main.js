@@ -1986,7 +1986,7 @@ Game.Launch=function()
 		{
 			if (Game.beta) {var me=l('linkVersionBeta');me.parentNode.removeChild(me);}
 			else if (Game.version==1.0466) {var me=l('linkVersionOld');me.parentNode.removeChild(me);}
-			else {var me=l('linkVersionLive');me.parentNode.removeChild(me);}
+			//else {var me=l('linkVersionLive');me.parentNode.removeChild(me);}
 		}
 		
 		Game.lastActivity=Date.now();//reset on mouse move, key press or click
@@ -2538,7 +2538,7 @@ Game.Launch=function()
 			});
 			
 			Game.attachTooltip(l('topbarOrteil'),'<div style="padding:8px;width:250px;text-align:center;">Back to the homepage!</div>','this');l('changeLanguage').innerHTML=loc("Change language");
-			l('links').childNodes[0].nodeValue=loc("Other versions");
+			//l('links').childNodes[0].nodeValue=loc("Other versions");
 			//l('linkVersionBeta').innerHTML=loc("Beta");
 		}
 		
