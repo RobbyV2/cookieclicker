@@ -1925,11 +1925,7 @@ Game.Launch=function()
 	}
 	Game.ErrorFrame=function()
 	{
-		l('offGameMessage').innerHTML=
-		'<div class="title">Oops. Wrong address!</div>'+
-		'<div>It looks like you\'re accessing Cookie Clicker from another URL than the official one.<br>'+
-		'You can <a href="//orteil.dashnet.org/cookieclicker/" target="_blank">play Cookie Clicker over here</a>!<br>'+
-		'<small>(If for any reason, you are unable to access the game on the official URL, we are currently working on a second domain.)</small></div>';
+		Game.Load(function(){Game.Init();if (firstLaunch) Game.showLangSelection(true);});
 	}
 	Game.timedout=false;
 	Game.Timeout=function()
@@ -2541,18 +2537,7 @@ Game.Launch=function()
 				Game.showLangSelection();
 			});
 			
-			Game.attachTooltip(l('topbarOrteil'),'<div style="padding:8px;width:250px;text-align:center;">Back to Orteil\'s subdomain!<br>Lots of other games in there!</div>'+tinyIcon([17,5],'display:block;margin:-12px auto;'),'this');
-			Game.attachTooltip(l('topbarDashnet'),'<div style="padding:8px;width:250px;text-align:center;">Back to our homepage!</div>','this');
-			Game.attachTooltip(l('topbarTwitter'),'<div style="padding:8px;width:250px;text-align:center;">Orteil\'s twitter, which frequently features game updates.</div>','this');
-			Game.attachTooltip(l('topbarTumblr'),'<div style="padding:8px;width:250px;text-align:center;">Orteil\'s tumblr, which frequently features game updates.</div>','this');
-			Game.attachTooltip(l('topbarDiscord'),'<div style="padding:8px;width:250px;text-align:center;">Our official discord server.<br>You can share tips and questions about Cookie Clicker and all our other games!</div>','this');
-			Game.attachTooltip(l('topbarPatreon'),'<div style="padding:8px;width:250px;text-align:center;">Support us on Patreon and help us keep updating Cookie Clicker!<br>There\'s neat rewards for patrons too!</div>','this');
-			Game.attachTooltip(l('topbarMerch'),'<div style="padding:8px;width:250px;text-align:center;">Cookie Clicker shirts, hoodies and stickers!</div>','this');
-			Game.attachTooltip(l('topbarMobileCC'),'<div style="padding:8px;width:250px;text-align:center;">Play Cookie Clicker on your phone!<br>(Android only; iOS version will be released later)</div>','this');
-			Game.attachTooltip(l('topbarSteamCC'),'<div style="padding:8px;width:250px;text-align:center;">Get Cookie Clicker on Steam!<br>Featuring music by C418.</div>','this');
-			Game.attachTooltip(l('topbarRandomgen'),'<div style="padding:8px;width:250px;text-align:center;">A thing we made that lets you write random generators.</div>','this');
-			Game.attachTooltip(l('topbarIGM'),'<div style="padding:8px;width:250px;text-align:center;">A thing we made that lets you create your own idle games using a simple scripting language.</div>','this');
-			l('changeLanguage').innerHTML=loc("Change language");
+			Game.attachTooltip(l('topbarOrteil'),'<div style="padding:8px;width:250px;text-align:center;">Back to the homepage!</div>','this');l('changeLanguage').innerHTML=loc("Change language");
 			l('links').childNodes[0].nodeValue=loc("Other versions");
 			//l('linkVersionBeta').innerHTML=loc("Beta");
 		}
@@ -16862,20 +16847,16 @@ window.onload=function()
 				LoadLang('loc/'+lang+'.js?v='+Game.version,function(){
 					var launch=function(){
 						Game.Launch();
-						if (top!=self) Game.ErrorFrame();
-						else
-						{
-							console.log('[=== '+choose([
-								'Oh, hello!',
-								'hey, how\'s it hangin',
-								'About to cheat in some cookies or just checking for bugs?',
-								'Remember : cheated cookies taste awful!',
-								'Hey, Orteil here. Cheated cookies taste awful... or do they?',
-							])+' ===]');
-							Game.Load(function(){Game.Init();if (firstLaunch) Game.showLangSelection(true);});
-							//try {Game.Load(Game.Init);}
-							//catch(err) {console.log('ERROR : '+err.message);}
-						}
+						console.log('[=== '+choose([
+							'Oh, hello!',
+							'hey, how\'s it hangin',
+							'About to cheat in some cookies or just checking for bugs?',
+							'Remember : cheated cookies taste awful!',
+							'Hey, Orteil here. Cheated cookies taste awful... or do they?',
+						])+' ===]');
+						Game.Load(function(){Game.Init();if (firstLaunch) Game.showLangSelection(true);});
+						//try {Game.Load(Game.Init);}
+						//catch(err) {console.log('ERROR : '+err.message);}
 					}
 					if (App && App.loadMods) App.loadMods(launch);
 					else launch();
